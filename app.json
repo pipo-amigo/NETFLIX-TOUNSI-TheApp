@@ -1,38 +1,51 @@
 {
   "expo": {
-    "name": "my-expo-app",
+    "name": "NETFLIX TOUNSI",
     "slug": "my-expo-app",
     "version": "1.0.0",
-
+    "scheme": "netflixtounsi",
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/fNTlogo.png"
     },
-
     "experiments": {
       "tsconfigPaths": true
     },
-
     "plugins": [],
-
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
-
+    "icon": "./assets/NTlogo.png",
     "userInterfaceStyle": "light",
-
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/NTlogo.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#000"
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.ghassenchebbi.netflixtounsi"
     },
     "android": {
+      "permissions": [
+        "INTERNET",
+        "ACCESS_NETWORK_STATE",
+        "CAMERA",
+        "READ_EXTERNAL_STORAGE",
+        "WRITE_EXTERNAL_STORAGE",
+        "WAKE_LOCK"
+      ],
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
+        "foregroundImage": "./assets/NTlogo.png",
+        "backgroundColor": "#000"
+      },
+      "package": "com.ghassen_chebbi_7.myexpoapp"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "7ea8b167-0826-4b11-84e6-7a6ea577d1e4"
       }
-    }
+    },
+    "owner": "ghassen_chebbi_7"
   }
 }
