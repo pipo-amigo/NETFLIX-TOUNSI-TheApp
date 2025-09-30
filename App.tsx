@@ -81,7 +81,7 @@ if (Platform.OS === 'web' && window.innerWidth > 1024) {
       }}
     >
       <h1 style={{ fontSize: '2rem', marginBottom: '1rem' }}>
-        🚫 You can’t watch from your PC here
+       You can’t watch from your PC here
       </h1>
       <p style={{ fontSize: '1.2rem', marginBottom: '2rem' }}>
         Please visit our website to continue:
