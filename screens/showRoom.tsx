@@ -29,7 +29,7 @@ export default function ShowRoom({
   setShowRoomData,
   setDisableTabBar,
 }: {
-  setActiveTab: (tab: "Home" | "Search" | "Account" | "Show") => void;
+  setActiveTab: (tab: "Home" | "Search" | "Live" | "Show") => void;
   setDisableTabBar: (disabledTab: any) => any;
   showRoomData?: any;
   setShowRoomData: (data: any) => void;
@@ -187,13 +187,13 @@ export default function ShowRoom({
             <WebPlayerModal
               visible={true}
               onClose={() => setPlayerRoom(false)}
-              embedUrl={`https://player.vidpro.top/embed/tv/${showRoomData.id}/${selectedSeason}/${Episode}?dub=true&autoplay=true`}
+              embedUrl={`https://player.vidsrc.co/embed/tv/${showRoomData.id}/${selectedSeason}/${Episode}?dub=true&autoplay=true&autonext=true&nextbutton=true&poster=true&primarycolor=FF0000&secondarycolor=E14C62&iconcolor=FFFFFF&fontcolor=FFFFFF&fontsize=26px&opacity=0&font=Poppins`}
             />
           ) : (
             <WebPlayerModal
               visible={true}
               onClose={() => setPlayerRoom(false)}
-              embedUrl={`https://player.vidpro.top/embed/movie/${showRoomData.id}?dub=true&autoplay=true`}
+              embedUrl={`https://player.vidsrc.co/embed/movie/${showRoomData.id}?dub=true&autoplay=true&autonext=true&nextbutton=true&poster=true&primarycolor=FF0000&secondarycolor=E14C62&iconcolor=FFFFFF&fontcolor=FFFFFF&fontsize=26px&opacity=0&font=Poppins`}
             />
           )
         ) : (

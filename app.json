@@ -17,7 +17,7 @@
     "splash": {
       "image": "./assets/NTlogo.png",
       "resizeMode": "contain",
-      "backgroundColor": "#000"
+      "backgroundColor": "#000000"
     },
     "assetBundlePatterns": [
       "**/*"
@@ -37,7 +37,7 @@
       ],
       "adaptiveIcon": {
         "foregroundImage": "./assets/NTlogo.png",
-        "backgroundColor": "#000"
+        "backgroundColor": "#000000"
       },
       "package": "com.ghassen_chebbi_7.myexpoapp"
     },

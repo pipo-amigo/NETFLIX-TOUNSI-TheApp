@@ -20,7 +20,7 @@ import { options } from '../utils/options';
 
 const { width } = Dimensions.get('window');
 
-export default function SearchPage({setActiveTab,setShowRoomData}: { setActiveTab: (tab: 'Home' | 'Search' | 'Account' | 'Show') => void; setShowRoomData: (data: any) => void }) {
+export default function SearchPage({setActiveTab,setShowRoomData}: { setActiveTab: (tab: 'Home' | 'Search' | 'Live' | 'Show') => void; setShowRoomData: (data: any) => void }) {
   const [query, setQuery] = useState('');
   const [movieResults, setMovieResults] = useState<any[]>([]);
   const [tvResults, setTvResults] = useState<any[]>([]);

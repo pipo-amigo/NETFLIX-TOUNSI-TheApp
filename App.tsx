@@ -12,6 +12,7 @@ import {
 } from 'react-native-reanimated';
 import AccountPage from 'screens/accountPage';
 import UpdateScreen from 'screens/updateScreen';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 // This is the default configuration
 configureReanimatedLogger({
@@ -22,39 +23,52 @@ export default function App() {
 
 
 
-  const [activeTab, setActiveTab] = useState<'Home' | 'Search' | 'Account' | 'Show'>('Home');
+  const [activeTab, setActiveTab] = useState<'Home' | 'Search' | 'Live' | 'Show'>('Home');
   const [ShowRoomData, setShowRoomData] = useState<any>(null);
   const [DisableTabBar, setDisableTabBar] = useState(true);
-   const [shutdown, setShutdown] = useState(true);
-  //   useEffect(() => {
-  //   fetch("http://20.199.66.194:5000/api/shutdown/1756150755441")
-  //     .then(res => res.json())
-  //     .then(data => {
-  //       // console.log("Shutdown state:", data.shutdown);
-  //       setShutdown(data.shutdown);
-  //     })
-  //     .catch(err => console.error("Failed to fetch shutdown state:", err));
-  // }, []);
-useEffect(() => {
-  fetch("http://20.199.66.194:5000/api/shutdown/1756150755441", {
-        headers: {
-          Accept: "application/json",
-        },
-      })
-    .then(async res => {
-      const text = await res.text();
-      console.log("Raw response:", text);
+   const [shutdown, setShutdown] = useState(false);
+   useEffect(() => {
+  let interval: NodeJS.Timeout;
 
-      try {
-        const data = JSON.parse(text);
-        setShutdown(data.shutdown);
-      } catch (e) {
-        console.error("Failed to parse JSON:", e);
-        setShutdown(false); // fallback
-      }
-    })
-    .catch(err => console.error("Fetch error:", err));
+  const fetchShutdown = async () => {
+    try {
+      const res = await fetch("https://expects-like-required-labour.trycloudflare.com/api/shutdown/1756150755441");
+      const data = await res.json();
+      setShutdown(data.shutdown);
+    } catch (err) {
+      console.log("Failed to fetch shutdown state:", err);
+    }
+  };
+
+  // fetch once immediately
+  fetchShutdown();
+
+  // then fetch every 5 seconds (adjust interval if needed)
+  interval = setInterval(fetchShutdown, 5000);
+
+  // cleanup when component unmounts
+  return () => clearInterval(interval);
 }, []);
+// useEffect(() => {
+//   fetch("http://20.199.66.194:5000/api/shutdown/1756150755441", {
+//         headers: {
+//           Accept: "application/json",
+//         },
+//       })
+//     .then(async res => {
+//       const text = await res.text();
+//       console.log("Raw response:", text);
+
+//       try {
+//         const data = JSON.parse(text);
+//         setShutdown(data.shutdown);
+//       } catch (e) {
+//         console.error("Failed to parse JSON:", e);
+//         setShutdown(false); // fallback
+//       }
+//     })
+//     .catch(err => console.error("Fetch error:", err));
+// }, []);
 
   const renderContent = () => {
     switch (activeTab) {
@@ -62,7 +76,7 @@ useEffect(() => {
         return <HomePage setActiveTab={setActiveTab} setShowRoomData={setShowRoomData}/>;
       case 'Search':
         return <SearchPage setShowRoomData={setShowRoomData} setActiveTab={setActiveTab}/>
-      case 'Account':
+      case 'Live':
         return (
          <AccountPage setActiveTab={setActiveTab}/>
         );
@@ -78,10 +92,12 @@ useEffect(() => {
     );
   }
   return (
-    <View style={{ flex: 1, backgroundColor: 'black' }}>
+     <SafeAreaProvider>
+    <View style={{ flex: 1, backgroundColor: 'black' }} >
       {renderContent()}
       {DisableTabBar&&<TabBar activeTab={activeTab} setActiveTab={setActiveTab} />}
       <StatusBar hidden={true} />
     </View>
+    </SafeAreaProvider>
   );
 }

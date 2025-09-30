@@ -22,7 +22,7 @@ const shuffleArray = (array: any[]) => {
   return array.sort(() => Math.random() - 0.5);
 };
 
-export default function HomePage({setActiveTab,setShowRoomData}: {setActiveTab: (tab: 'Home' | 'Search' | 'Account' | 'Show') => void; setShowRoomData: (data: any) => void}) {
+export default function HomePage({setActiveTab,setShowRoomData}: {setActiveTab: (tab: 'Home' | 'Search' | 'Live' | 'Show') => void; setShowRoomData: (data: any) => void}) {
   const [movies, setMovies] = useState([]);
   const [tvShows, setTVShows] = useState([]);
   const [loading, setLoading] = useState(true);

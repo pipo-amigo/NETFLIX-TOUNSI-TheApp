@@ -13,18 +13,19 @@ import Animated, {
   withDelay,
   runOnJS,
 } from 'react-native-reanimated';
-
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 const { width } = Dimensions.get('window');
 const tabs = [
   { name: 'Home', icon: 'home-outline', iconActive: 'home' },
   { name: 'Search', icon: 'search-outline', iconActive: 'search' },
-  { name: 'Account', icon: 'person-outline', iconActive: 'person' },
+  { name: 'Live', icon: 'radio-outline', iconActive: 'radio' },
 ];
 const TAB_WIDTH = width / tabs.length+1;
 
-export default function TabBar({ activeTab,setActiveTab}:{ activeTab: "Home"|"Search"|"Account", setActiveTab: any}) {
+export default function TabBar({ activeTab,setActiveTab}:{ activeTab: "Home"|"Search"|"Live", setActiveTab: any}) {
   
-
+  const insets = useSafeAreaInsets();
+  const navBarHeight = insets.bottom;
   const translateX = useSharedValue(0);
   const scale = useSharedValue(1);
   const opacity = useSharedValue(1);
@@ -36,7 +37,7 @@ export default function TabBar({ activeTab,setActiveTab}:{ activeTab: "Home"|"Se
     scale.value = withTiming(0.2, { duration: 50 });
     opacity.value = withTiming(0, { duration: 50 }, () => {
       // Step 2: Move position after shrink
-      translateX.value = withTiming(activeTab=="Home"&&0|| activeTab=="Search"&&TAB_WIDTH-10 || activeTab=="Account"&&TAB_WIDTH*1.90, { duration: 0 });
+      translateX.value = withTiming(activeTab=="Home"&&0|| activeTab=="Search"&&TAB_WIDTH-10 || activeTab=="Live"&&TAB_WIDTH*1.90, { duration: 0 });
 
       // Step 3: Restore size and opacity
       scale.value = withDelay(50, withTiming(1, { duration: 100 }));
@@ -66,6 +67,7 @@ export default function TabBar({ activeTab,setActiveTab}:{ activeTab: "Home"|"Se
         shadowRadius: 10,
         elevation: 8,
         left: 0,
+        bottom: navBarHeight>0?navBarHeight-10:0,
       }}
     >
       {/* Animated pill background */}

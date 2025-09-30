@@ -3,7 +3,7 @@ import { Text, View, BackHandler } from "react-native"
 
 
 
-export default function AccountPage ({setActiveTab}:{setActiveTab: (tab: 'Home' | 'Search' | 'Account' | 'Show') => void;}) {
+export default function AccountPage ({setActiveTab}:{setActiveTab: (tab: 'Home' | 'Search' | 'Live' | 'Show') => void;}) {
 
      useEffect(() => {
     const backAction = () => {
@@ -20,7 +20,8 @@ export default function AccountPage ({setActiveTab}:{setActiveTab: (tab: 'Home' 
   }, []);
     return(
          <View className="flex-1 items-center justify-center bg-black">
-                    <Text style={{ color: 'white' }}>Account Page</Text>
+          <Text style={{color:'red',fontWeight:"bold",fontSize:25}}>Live events</Text>
+                    <Text style={{ color: 'white',fontWeight:"bold" }}>will be there on the next update inchallah.</Text>
                   </View>
     )    
 }
