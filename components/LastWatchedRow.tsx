@@ -19,7 +19,7 @@ export default function LastWatchedRow({ setActiveTab, setShowRoomData }: any) {
   return (
     <View className="mt-4">
       <Text className="text-gray-300 text-xl font-semibold px-5 mb-3 tracking-wide">
-        Last Watched
+        Continue Watching
       </Text>
 
       <ScrollView horizontal showsHorizontalScrollIndicator={false} className="px-5">
