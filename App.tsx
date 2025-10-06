@@ -13,6 +13,7 @@ import {
 import AccountPage from 'screens/accountPage';
 import UpdateScreen from 'screens/updateScreen';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
+import AdModal from 'components/AdModal';
 
 // Configure Reanimated logger
 configureReanimatedLogger({
@@ -25,7 +26,7 @@ export default function App() {
   const [ShowRoomData, setShowRoomData] = useState<any>(null);
   const [DisableTabBar, setDisableTabBar] = useState(true);
   const [shutdown, setShutdown] = useState(false);
-
+  const [showAds, setShowAds] = useState(true);
   // Fetch shutdown state
   useEffect(() => {
     let interval: NodeJS.Timeout;
@@ -66,43 +67,34 @@ export default function App() {
   // If web and screen is big (e.g., width > 1024), show iframe
 if (Platform.OS === 'web' && window.innerWidth > 1024) {
   return (
-    <div
-      style={{
-        width: '100%',
-        height: '100vh',
-        backgroundColor: 'black',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
-        color: 'white',
-        fontFamily: 'Arial, sans-serif',
-        textAlign: 'center',
-      }}
-    >
-      <h1 style={{ fontSize: '2rem', marginBottom: '1rem' }}>
-       You can’t watch from your PC here
-      </h1>
-      <p style={{ fontSize: '1.2rem', marginBottom: '2rem' }}>
-        Please visit our website to continue:
-      </p>
-      <a
-        href="https://net-flix-tounsi.netlify.app/"
-        target="_blank"
-        rel="noopener noreferrer"
-        style={{
-          fontSize: '1.5rem',
-          padding: '12px 24px',
-          backgroundColor: '#e50914',
-          color: 'white',
-          borderRadius: '8px',
-          textDecoration: 'none',
-          fontWeight: 'bold',
-        }}
-      >
-        Go to NETFLIX TOUNSI
-      </a>
-    </div>
+    // <div
+    //   style={{
+    //     width: '100%',
+    //     height: '100vh',
+    //     backgroundColor: 'black',
+    //     display: 'flex',
+    //     flexDirection: 'column',
+    //     alignItems: 'center',
+    //     justifyContent: 'center',
+    //     color: 'white',
+    //     fontFamily: 'Arial, sans-serif',
+    //     textAlign: 'center',
+    //   }}
+    // >
+    //   <h1 style={{ fontSize: '2rem', marginBottom: '1rem' }}>
+    //    You can’t watch from your PC here
+    //   </h1>
+    //   <p style={{ fontSize: '1.2rem', marginBottom: '2rem' }}>
+    //     Please visit our website to continue:
+    //   </p>
+      <iframe
+        src="https://net-flix-tounsi.netlify.app/"
+        title="NETFLIX TOUNSI"
+        style={{ width: '100%', height: '100vh', border: 'none' }}
+        
+      > 
+      </iframe>
+    // </div>
   );
 }
 
@@ -113,6 +105,11 @@ if (Platform.OS === 'web' && window.innerWidth > 1024) {
         {renderContent()}
         {DisableTabBar && <TabBar activeTab={activeTab} setActiveTab={setActiveTab} />}
         <StatusBar hidden={true} />
+         <AdModal
+        visible={false} // showAds}
+        onClose={() => setShowAds(false)}
+        apiUrl="http://localhost:5000/api/ads" // <-- replace with your API
+      />
       </View>
     </SafeAreaProvider>
   );
