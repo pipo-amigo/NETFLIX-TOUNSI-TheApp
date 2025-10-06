@@ -77,7 +77,7 @@ export default function App() {
   if (shutdown) return <UpdateScreen />;
 
   // If web and screen is big (e.g., width > 1024), show iframe
-if (Platform.OS === 'web' && !IsMobileView) {
+if (Platform.OS === 'web' && IsMobileView) {
   
   window.location.href = "https://net-flix-tounsi.netlify.app/";
   // return (
