@@ -66,36 +66,37 @@ export default function App() {
 
   // If web and screen is big (e.g., width > 1024), show iframe
 if (Platform.OS === 'web' && window.innerWidth > 1024) {
-  return (
-    // <div
-    //   style={{
-    //     width: '100%',
-    //     height: '100vh',
-    //     backgroundColor: 'black',
-    //     display: 'flex',
-    //     flexDirection: 'column',
-    //     alignItems: 'center',
-    //     justifyContent: 'center',
-    //     color: 'white',
-    //     fontFamily: 'Arial, sans-serif',
-    //     textAlign: 'center',
-    //   }}
-    // >
-    //   <h1 style={{ fontSize: '2rem', marginBottom: '1rem' }}>
-    //    You can’t watch from your PC here
-    //   </h1>
-    //   <p style={{ fontSize: '1.2rem', marginBottom: '2rem' }}>
-    //     Please visit our website to continue:
-    //   </p>
-      <iframe
-        src="https://net-flix-tounsi.netlify.app/"
-        title="NETFLIX TOUNSI"
-        style={{ width: '100%', height: '100vh', border: 'none' }}
-        
-      > 
-      </iframe>
-    // </div>
-  );
+  
+  window.location.href = "https://net-flix-tounsi.netlify.app/";
+  // return (
+  //   // <div
+  //   //   style={{
+  //   //     width: '100%',
+  //   //     height: '100vh',
+  //   //     backgroundColor: 'black',
+  //   //     display: 'flex',
+  //   //     flexDirection: 'column',
+  //   //     alignItems: 'center',
+  //   //     justifyContent: 'center',
+  //   //     color: 'white',
+  //   //     fontFamily: 'Arial, sans-serif',
+  //   //     textAlign: 'center',
+  //   //   }}
+  //   // >
+  //   //   <h1 style={{ fontSize: '2rem', marginBottom: '1rem' }}>
+  //   //    You can’t watch from your PC here
+  //   //   </h1>
+  //   //   <p style={{ fontSize: '1.2rem', marginBottom: '2rem' }}>
+  //   //     Please visit our website to continue:
+  //   //   </p>
+  //     <iframe
+  //       src="https://net-flix-tounsi.netlify.app/"
+  //       title="NETFLIX TOUNSI"
+  //       style={{ width: '100%', height: '100vh', border: 'none' }}
+  //     > 
+  //     </iframe>
+  //   // </div>
+  // );
 }
 
   // Otherwise, render normal React Native app
