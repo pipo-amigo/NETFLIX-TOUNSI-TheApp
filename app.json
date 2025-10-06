@@ -5,7 +5,7 @@
     "version": "1.0.0",
     "scheme": "netflixtounsi",
     "web": {
-      "favicon": "./assets/fNTlogo.png",
+      "favicon": "./assets/NTlogo.png",
       "manifest": {
         "name": "NETFLIX TOUNSI",
         "short_name": "Tounsi",
