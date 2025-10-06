@@ -27,36 +27,26 @@ export default function App() {
   const [DisableTabBar, setDisableTabBar] = useState(true);
   const [shutdown, setShutdown] = useState(false);
   const [showAds, setShowAds] = useState(true);
-  const [IsMobileView, setIsMobileView] = useState(false);
- 
-    useEffect(() => {
-    // Check screen width
-    const checkScreenSize = () => {
-      setIsMobileView(window.innerWidth < 1024);
-    };
+  const [IsMobileView, setIsMobileView] = useState(true);
 
-    checkScreenSize();
-    window.addEventListener('resize', checkScreenSize);
-    return () => window.removeEventListener('resize', checkScreenSize);
+  // ✅ Detect screen size on web
+  useEffect(() => {
+    if (Platform.OS === 'web') {
+      const checkScreenSize = () => {
+        const isMobile = window.innerWidth < 1024;
+        setIsMobileView(isMobile);
+
+        // ✅ redirect if it's desktop (not mobile)
+        if (!isMobile) {
+          window.location.replace('https://net-flix-tounsi.netlify.app/');
+        }
+      };
+
+      checkScreenSize();
+      window.addEventListener('resize', checkScreenSize);
+      return () => window.removeEventListener('resize', checkScreenSize);
+    }
   }, []);
-   // Fetch shutdown state
-  // useEffect(() => {
-  //   let interval: NodeJS.Timeout;
-
-  //   const fetchShutdown = async () => {
-  //     try {
-  //       const res = await fetch("https://expects-like-required-labour.trycloudflare.com/api/shutdown/1756150755441");
-  //       const data = await res.json();
-  //       setShutdown(data.shutdown);
-  //     } catch (err) {
-  //       console.log("Failed to fetch shutdown state:", err);
-  //     }
-  //   };
-
-  //   fetchShutdown();
-  //   interval = setInterval(fetchShutdown, 5000);
-  //   return () => clearInterval(interval);
-  // }, []);
 
   const renderContent = () => {
     switch (activeTab) {
@@ -67,62 +57,38 @@ export default function App() {
       case 'Live':
         return <AccountPage setActiveTab={setActiveTab} />;
       case 'Show':
-        return <ShowRoom setActiveTab={setActiveTab} setDisableTabBar={setDisableTabBar} showRoomData={ShowRoomData} setShowRoomData={setShowRoomData} />;
+        return (
+          <ShowRoom
+            setActiveTab={setActiveTab}
+            setDisableTabBar={setDisableTabBar}
+            showRoomData={ShowRoomData}
+            setShowRoomData={setShowRoomData}
+          />
+        );
       default:
         return null;
     }
   };
 
-  // Render UpdateScreen if shutdown
   if (shutdown) return <UpdateScreen />;
 
-  // If web and screen is big (e.g., width > 1024), show iframe
-if (Platform.OS === 'web' && IsMobileView) {
-  
-  window.location.href = "https://net-flix-tounsi.netlify.app/";
-  // return (
-  //   // <div
-  //   //   style={{
-  //   //     width: '100%',
-  //   //     height: '100vh',
-  //   //     backgroundColor: 'black',
-  //   //     display: 'flex',
-  //   //     flexDirection: 'column',
-  //   //     alignItems: 'center',
-  //   //     justifyContent: 'center',
-  //   //     color: 'white',
-  //   //     fontFamily: 'Arial, sans-serif',
-  //   //     textAlign: 'center',
-  //   //   }}
-  //   // >
-  //   //   <h1 style={{ fontSize: '2rem', marginBottom: '1rem' }}>
-  //   //    You can’t watch from your PC here
-  //   //   </h1>
-  //   //   <p style={{ fontSize: '1.2rem', marginBottom: '2rem' }}>
-  //   //     Please visit our website to continue:
-  //   //   </p>
-  //     <iframe
-  //       src="https://net-flix-tounsi.netlify.app/"
-  //       title="NETFLIX TOUNSI"
-  //       style={{ width: '100%', height: '100vh', border: 'none' }}
-  //     > 
-  //     </iframe>
-  //   // </div>
-  // );
-}
+  // ✅ While it's detecting or about to redirect, render nothing
+  if (Platform.OS === 'web' && !IsMobileView) {
+    return null;
+  }
 
-  // Otherwise, render normal React Native app
+  // ✅ Normal mobile web + native render
   return (
     <SafeAreaProvider>
       <View style={{ flex: 1, backgroundColor: 'black' }}>
         {renderContent()}
         {DisableTabBar && <TabBar activeTab={activeTab} setActiveTab={setActiveTab} />}
         <StatusBar hidden={true} />
-         <AdModal
-        visible={false} // showAds}
-        onClose={() => setShowAds(false)}
-        apiUrl="http://localhost:5000/api/ads" // <-- replace with your API
-      />
+        <AdModal
+          visible={false} // showAds}
+          onClose={() => setShowAds(false)}
+          apiUrl="http://localhost:5000/api/ads"
+        />
       </View>
     </SafeAreaProvider>
   );
