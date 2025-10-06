@@ -5,7 +5,15 @@
     "version": "1.0.0",
     "scheme": "netflixtounsi",
     "web": {
-      "favicon": "./assets/fNTlogo.png"
+      "favicon": "./assets/fNTlogo.png",
+      "manifest": {
+        "name": "NETFLIX TOUNSI",
+        "short_name": "Tounsi",
+        "start_url": ".",
+        "display": "standalone",
+        "background_color": "#000000",
+        "theme_color": "#000000"
+      }
     },
     "experiments": {
       "tsconfigPaths": true
@@ -24,7 +32,13 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.ghassenchebbi.netflixtounsi"
+      "bundleIdentifier": "com.ghassenchebbi.netflixtounsi",
+      "userInterfaceStyle": "light",
+      "infoPlist": {
+        "UIStatusBarStyle": "UIStatusBarStyleBlackTranslucent",
+        "UIRequiresFullScreen": true,
+        "UIApplicationSupportsIndirectInputEvents": true
+      }
     },
     "android": {
       "permissions": [
@@ -39,7 +53,8 @@
         "foregroundImage": "./assets/NTlogo.png",
         "backgroundColor": "#000000"
       },
-      "package": "com.ghassen_chebbi_7.myexpoapp"
+      "package": "com.ghassen_chebbi_7.myexpoapp",
+      "userInterfaceStyle": "light"
     },
     "extra": {
       "eas": {
