@@ -27,24 +27,36 @@ export default function App() {
   const [DisableTabBar, setDisableTabBar] = useState(true);
   const [shutdown, setShutdown] = useState(false);
   const [showAds, setShowAds] = useState(true);
-  // Fetch shutdown state
-  useEffect(() => {
-    let interval: NodeJS.Timeout;
-
-    const fetchShutdown = async () => {
-      try {
-        const res = await fetch("https://expects-like-required-labour.trycloudflare.com/api/shutdown/1756150755441");
-        const data = await res.json();
-        setShutdown(data.shutdown);
-      } catch (err) {
-        console.log("Failed to fetch shutdown state:", err);
-      }
+  const [IsMobileView, setIsMobileView] = useState(false);
+ 
+    useEffect(() => {
+    // Check screen width
+    const checkScreenSize = () => {
+      setIsMobileView(window.innerWidth < 1024);
     };
 
-    fetchShutdown();
-    interval = setInterval(fetchShutdown, 5000);
-    return () => clearInterval(interval);
+    checkScreenSize();
+    window.addEventListener('resize', checkScreenSize);
+    return () => window.removeEventListener('resize', checkScreenSize);
   }, []);
+   // Fetch shutdown state
+  // useEffect(() => {
+  //   let interval: NodeJS.Timeout;
+
+  //   const fetchShutdown = async () => {
+  //     try {
+  //       const res = await fetch("https://expects-like-required-labour.trycloudflare.com/api/shutdown/1756150755441");
+  //       const data = await res.json();
+  //       setShutdown(data.shutdown);
+  //     } catch (err) {
+  //       console.log("Failed to fetch shutdown state:", err);
+  //     }
+  //   };
+
+  //   fetchShutdown();
+  //   interval = setInterval(fetchShutdown, 5000);
+  //   return () => clearInterval(interval);
+  // }, []);
 
   const renderContent = () => {
     switch (activeTab) {
@@ -65,7 +77,7 @@ export default function App() {
   if (shutdown) return <UpdateScreen />;
 
   // If web and screen is big (e.g., width > 1024), show iframe
-if (Platform.OS === 'web' && window.innerWidth > 1024) {
+if (Platform.OS === 'web' && !IsMobileView) {
   
   window.location.href = "https://net-flix-tounsi.netlify.app/";
   // return (
