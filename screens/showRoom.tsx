@@ -187,13 +187,13 @@ export default function ShowRoom({
             <WebPlayerModal
               visible={true}
               onClose={() => setPlayerRoom(false)}
-              embedUrl={`https://player.vidsrc.co/embed/tv/${showRoomData.id}/${selectedSeason}/${Episode}?dub=true&autoplay=true&autonext=true&nextbutton=true&poster=true&primarycolor=FF0000&secondarycolor=E14C62&iconcolor=FFFFFF&fontcolor=FFFFFF&fontsize=26px&opacity=0&font=Poppins`}
+              embedUrl={`https://player.vidsrc.co/embed/tv/${showRoomData.id}/${selectedSeason}/${Episode}?dub=true&autoplay=true&autonext=true&nextbutton=true&poster=true&primarycolor=FF0000&secondarycolor=E14C62&iconcolor=FFFFFF&fontcolor=FFFFFF&fontsize=26px&opacity=0&font=Poppins&server=7`}
             />
           ) : (
             <WebPlayerModal
               visible={true}
               onClose={() => setPlayerRoom(false)}
-              embedUrl={`https://player.vidsrc.co/embed/movie/${showRoomData.id}?dub=true&autoplay=true&autonext=true&nextbutton=true&poster=true&primarycolor=FF0000&secondarycolor=E14C62&iconcolor=FFFFFF&fontcolor=FFFFFF&fontsize=26px&opacity=0&font=Poppins`}
+              embedUrl={`https://player.vidsrc.co/embed/movie/${showRoomData.id}?dub=true&autoplay=true&autonext=true&nextbutton=true&poster=true&primarycolor=FF0000&secondarycolor=E14C62&iconcolor=FFFFFF&fontcolor=FFFFFF&fontsize=26px&opacity=0&font=Poppins&server=7`}
             />
           )
         ) : (
