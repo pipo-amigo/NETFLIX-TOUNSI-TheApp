@@ -7,16 +7,16 @@
     "orientation": "portrait",
     "userInterfaceStyle": "light",
 
-    "icon": "./assets/rounded_android_foreground_512.svg",
+    "icon": "./assets/rounded_android_foreground_512.png",
 
     "splash": {
-      "image": "./assets/rounded_android_foreground_512.svg",
+      "image": "./assets/rounded_android_foreground_512.png",
       "resizeMode": "contain",
       "backgroundColor": "#000000"
     },
 
     "web": {
-      "favicon": "./assets/rounded_android_foreground_512.svg",
+      "favicon": "./assets/rounded_android_foreground_512.png",
       "manifest": {
         "name": "NETFLIX TOUNSI",
         "short_name": "Tounsi",
@@ -26,7 +26,7 @@
         "theme_color": "#000000",
         "icons": [
           {
-            "src": "./assets/rounded_android_foreground_512.svg",
+            "src": "./assets/rounded_android_foreground_512.png",
             "sizes": "512x512",
             "type": "image/svg"
           }
@@ -44,7 +44,7 @@
         "WAKE_LOCK"
       ],
       "adaptiveIcon": {
-        "foregroundImage": "./assets/rounded_android_foreground_512.svg",
+        "foregroundImage": "./assets/rounded_android_foreground_512.png",
         "backgroundColor": "#000000"
       },
       "package": "com.ghassen_chebbi_7.myexpoapp",
