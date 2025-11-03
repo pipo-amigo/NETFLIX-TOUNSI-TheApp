@@ -16,9 +16,6 @@
     },
 
     "web": {
-            "meta": {
-        "ppck-ver": "2184dce966df5971c65b1d789b430f0b"
-      },
       "favicon": "./assets/rounded_android_foreground_512.png",
       "manifest": {
         "name": "NETFLIX TOUNSI",

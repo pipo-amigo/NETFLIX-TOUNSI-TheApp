@@ -6,6 +6,7 @@ import SearchPage from './screens/searchPage';
 import { StatusBar } from 'expo-status-bar';
 import ShowRoom from './screens/showRoom';
 import 'react-native-gesture-handler';
+import { Helmet } from "react-helmet";
 import {
   configureReanimatedLogger,
   ReanimatedLogLevel,
@@ -78,7 +79,10 @@ export default function App() {
   }
 
   // ✅ Normal mobile web + native render
-  return (
+  return (<>
+   <Helmet>
+        <meta name="ppck-ver" content="2184dce966df5971c65b1d789b430f0b" />
+      </Helmet>
     <SafeAreaProvider>
       <View style={{ flex: 1, backgroundColor: 'black' }}>
         {renderContent()}
@@ -91,5 +95,6 @@ export default function App() {
         />
       </View>
     </SafeAreaProvider>
+    </>
   );
 }
